@@ -15,15 +15,6 @@ ActiveRecord::Schema.define(version: 2020_05_20_024049) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "companies", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.date "start_date"
-    t.string "country"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "critics", force: :cascade do |t|
     t.string "username"
     t.text "body"
@@ -39,10 +30,7 @@ ActiveRecord::Schema.define(version: 2020_05_20_024049) do
     t.string "genre"
     t.integer "price"
     t.date "release_date"
-    t.bigint "company_id", null: false
-    t.index ["company_id"], name: "index_games_on_company_id"
   end
 
   add_foreign_key "critics", "games", column: "games_id"
-  add_foreign_key "games", "companies"
 end
