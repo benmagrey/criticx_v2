@@ -18,9 +18,16 @@ class GamesController < ApplicationController
       render json: @game.errors
     end
   end
+  
+  def destroy 
+    @game = Game.find(params[:id])
+    @game.destroy
+    render json: { status: 'Successfully destroyed', data:@game}, status: :ok
+  end
     
   private
   def game_params
     params.require(:game).permit( :name, :genre, :price, :release_date, :company_id)  
   end
+
 end
